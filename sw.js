@@ -48,7 +48,22 @@ const schedules = [
         subject: 'Jadwal Uji Coba',
         teacher: 'Guru Uji Coba'
     },
-    // Tambahkan jadwal lain jika perlu
+    {
+        day: 'Selasa', // Ubah sesuai hari ini
+        time: '19:00 - 19:30', // Waktu uji coba
+        subject: 'Jadwal Uji Coba',
+        teacher: 'Guru Uji Coba'
+    },    {
+        day: 'Selasa', // Ubah sesuai hari ini
+        time: '19:30 - 20:00', // Waktu uji coba
+        subject: 'Jadwal Uji Coba',
+        teacher: 'Guru Uji Coba'
+    },    {
+        day: 'Selasa', // Ubah sesuai hari ini
+        time: '20:00 - 20:30', // Waktu uji coba
+        subject: 'Jadwal Uji Coba',
+        teacher: 'Guru Uji Coba'
+    }
 ];
 
 // Function untuk memeriksa jadwal dan menampilkan notifikasi
