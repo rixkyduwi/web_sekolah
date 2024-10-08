@@ -66,13 +66,15 @@ const schedules = [
     }
 ];
 
+// Set untuk menyimpan jadwal yang sedang ditampilkan
+const notifiedSchedules = new Set();
+
 // Function untuk memeriksa jadwal dan menampilkan notifikasi
 function checkSchedule() {
     const currentDate = new Date();
-    const currentDay = currentDate.toLocaleString('id-ID', { weekday: 'long' }); // Mengambil hari saat ini
+    const currentDay = currentDate.toLocaleString('id-ID', { weekday: 'long' });
     const currentMinutes = currentDate.getHours() * 60 + currentDate.getMinutes();
-    
-    // Cek setiap entri jadwal
+
     schedules.forEach(schedule => {
         const scheduleDay = schedule.day;
         const [startTime, endTime] = schedule.time.split(' - ').map(t => {
@@ -80,13 +82,30 @@ function checkSchedule() {
             return hours * 60 + minutes;
         });
 
-        if (currentDay === scheduleDay && currentMinutes >= startTime && currentMinutes < endTime) {
-            console.log("Notifikasi akan muncul: " + schedule.subject + " oleh " + schedule.teacher);
-            self.registration.showNotification(schedule.subject, {
-                body: `Pengajaran oleh ${schedule.teacher}`,
-                icon: 'icon-url.png', // Ganti dengan URL icon yang sesuai
-                badge: 'badge-url.png', // Ganti dengan URL badge yang sesuai jika ada
-            });
+        const notificationTime = startTime - 5; // 5 menit sebelum pelajaran
+        const endNotificationTime = endTime + 2; // 2 menit setelah pelajaran
+
+        if (currentDay === scheduleDay && currentMinutes >= notificationTime && currentMinutes <= endNotificationTime) {
+            if (!notifiedSchedules.has(schedule.subject)) {
+                console.log("Notifikasi muncul: " + schedule.subject + " oleh " + schedule.teacher);
+
+                // Tampilkan notifikasi
+                self.registration.showNotification(schedule.subject, {
+                    body: `Pengajaran oleh ${schedule.teacher}`,
+                    // icon: 'icon-url.png', // Ganti dengan URL icon yang sesuai
+                    // badge: 'badge-url.png', // Ganti dengan URL badge yang sesuai jika ada
+                });
+
+                // Memutar suara notifikasi
+                // const audio = new Audio('assets/sounds/notification.mp3'); // Ganti dengan path file suara kamu
+                // audio.play();
+
+                notifiedSchedules.add(schedule.subject); // Tandai jadwal ini sudah ditampilkan
+            }
+        } else {
+            if (currentMinutes > endNotificationTime) {
+                notifiedSchedules.delete(schedule.subject);
+            }
         }
     });
 }
