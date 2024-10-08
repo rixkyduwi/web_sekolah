@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Siswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Form Absensi</h1>
+    <form action="submit-absensi.php" method="post">
+        <label for="student">Nama Siswa:</label>
+        <select name="student" id="student">
+            <option value="siswa1">Siswa 1</option>
+            <option value="siswa2">Siswa 2</option>
+            <!-- Tambahkan siswa lainnya -->
+        </select>
+
+        <label for="status">Status Kehadiran:</label>
+        <select name="status" id="status">
+            <option value="hadir">Hadir</option>
+            <option value="tidak hadir">Tidak Hadir</option>
+        </select>
+
+        <input type="submit" value="Simpan Absensi">
+    </form>
+</body>
+
+</html>
