@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Absensi Siswa SYNCNAU</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js').then(function (registration) {
@@ -36,6 +36,12 @@
                     subject: 'Bahasa Indonesia',
                     teacher: 'H. Jamar, S.Pd.I'
                 },
+                    {
+        day: 'Rabu', // Ubah sesuai hari ini
+        time: '17:30 - 18:00', // Waktu uji coba
+        subject: 'Jadwal Uji Coba',
+        teacher: 'Guru Uji Coba'
+    },
                 // Add more schedules based on your table
             ];
 
